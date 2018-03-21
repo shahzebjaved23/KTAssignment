@@ -5,7 +5,7 @@ module Authenticable
 			render json: { errors: "Not authenticated" }, status: :unauthorized and return 
 		end
 	end
-	
+
 	def user_signed_in?
 		current_user.present?
 	end
@@ -16,6 +16,12 @@ module Authenticable
 
 	def authentication_token
 		@authentication_token ||= request.headers['Authorization'] || request.headers['HTTP_AUTHENTICATION_TOKEN']
+	end
+
+	def authenticate_admin_user
+		unless current_user.role == "admin"
+			render json: { message: "action allowed only by admin users"}, status: 400 and return
+		end
 	end
 
 end
