@@ -19,12 +19,10 @@ RSpec.describe Trip do
 		truck2 = Truck.create(number: "2334343")
 
 		user = User.create(first_name: "firstname",last_name: "lastname", email: "email@some.com", password: "password")
-		trip = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now - 5.days, ending: DateTime.now, distance: 232)
 		
+		trip = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now - 5.days, ending: DateTime.now, distance: 232)
 		trip2 = Trip.create(user_id: user.id, truck_id: truck2.id, starting: DateTime.now - 2.days, ending: DateTime.now)
 	
-		puts trip2.errors.messages.inspect if trip2.errors
-
 		expect(trip2.id).to be(nil)
 	end
 
@@ -35,11 +33,8 @@ RSpec.describe Trip do
 		user2 = User.create(first_name: "firstname",last_name: "lastname", email: "email2@some.com", password: "password")
 		
 		trip = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now - 5.days, ending: DateTime.now, distance: 232)
-		
-		trip2 = Trip.create(user_id: user2.id, truck_id: truck.id, starting: DateTime.now - 2.days, ending: DateTime.now)
+		trip2 = Trip.create(user_id: user2.id, truck_id: truck.id, starting: DateTime.now - 2.days, ending: DateTime.now, distance: 232)
 	
-		puts trip2.errors.messages.inspect if trip2.errors
-
 		expect(trip2.id).to be(nil)
 	end
 
