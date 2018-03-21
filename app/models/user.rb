@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
 	after_create :add_auth_token
 
@@ -6,6 +7,6 @@ class User < ApplicationRecord
 	validates_inclusion_of :role, in: ["user", "admin"]
 
 	def add_auth_token
-		self.update(auth_token: SecureRandom.hex)
+		self.update(auth_token: Devise.friendly_token)
 	end
 end

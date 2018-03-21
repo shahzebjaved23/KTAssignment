@@ -2,22 +2,22 @@ require "rails_helper"
 
 RSpec.describe User do
 	it "created the user auth token on user creation" do
-		user = User.create(first_name: "firstname", last_name: "lastname", email: "email")
+		user = User.create(first_name: "firstname", last_name: "lastname", email: "email@some.com", password: "password")
 		expect(user.auth_token.present?).to be(true)
 	end
 
 	it "cannot create a user without the first name" do
-		user = User.create(last_name: "lastname", email: "email")
+		user = User.create(last_name: "lastname", email: "email@some.com", password: "password")
 		expect(user.id.blank?).to be(true)
 	end
 
 	it "cannot create user without last name" do
-		user = User.create(first_name: "firstname", email: "email")
+		user = User.create(first_name: "firstname", email: "email@some.com", password: "password")
 		expect(user.id.blank?).to be(true)
 	end
 
 	it "cannot create user without email" do
-		user = User.create(first_name: "firstname", last_name: "lastname")
+		user = User.create(first_name: "firstname", last_name: "lastname", password: "password")
 		expect(user.id.blank?).to be(true)
 	end
 end

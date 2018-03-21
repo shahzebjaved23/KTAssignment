@@ -4,13 +4,12 @@ class CreateUsers < ActiveRecord::Migration[5.1]
 
     	t.string :first_name
     	t.string :last_name
-    	t.string :email
-
+    	
     	t.string :role, default: "user"
 
     	t.string :auth_token
 
-		t.timestamps
+      t.timestamps
     end
   end
 end
