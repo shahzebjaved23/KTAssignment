@@ -12,6 +12,11 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def trips_summary
+	end
+
+	private
+
 	def user_params
 		params.require(:user).permit(:first_name, :last_name, :role ,:email, :password)
 	end
