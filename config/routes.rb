@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  # devise_for :users
-  
-  resources :users , only: [:create]
+	
+	post "login" => "sessions#create"
+
+	resources :users , only: [:create]
+	
+
 end

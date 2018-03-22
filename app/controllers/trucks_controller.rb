@@ -6,8 +6,5 @@ class TrucksController < ApplicationController
 		@trucks = Truck.all
 		render json: { trucks: @trucks }
 	end
-
-	def trips_summary
-	end
-
+	
 end
