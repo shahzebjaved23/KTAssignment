@@ -1,11 +1,12 @@
 module CreateTripsHelper
 	def create_trips_transaction
-		Trip.transaction do
-			trips_params.each do |trip_params|
-				Trip.create(trip_params)
+		begin
+			Trip.transaction do
+				trips_params.each do |trip_params|
+					Trip.create(trip_params)
+				end
 			end
-		end
-		return true
+			return true
 		rescue Exception => ex
 			return false
 		end

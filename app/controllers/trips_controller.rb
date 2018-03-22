@@ -5,7 +5,7 @@ class TripsController < ApplicationController
 	before_action :set_all_trips, only: [:index]
 	before_action :trips_summary, only: [:summary]
 
-	include SetTripsHelper
+	include SetTripHelper
 	include CreateTripsHelper
 	include TripsSummaryHelper
 
@@ -35,6 +35,6 @@ class TripsController < ApplicationController
 	def trips_params
 		params.require(:trips).permit([:user_id, :truck_id, :starting, :ending, :distance])
 	end
-	
+
 end
 
