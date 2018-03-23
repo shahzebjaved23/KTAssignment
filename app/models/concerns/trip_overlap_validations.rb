@@ -2,7 +2,7 @@ module TripOverlapValidations
 
 	def self.included(base)
   		base.class_eval do
-  			
+
   			validate :starting_greater_than_ending, :validate_user_left_overlap, :validate_user_right_overlap, :validate_user_middle_overlap, :validate_user_outer_overlap, :validate_truck_left_overlap, :validate_truck_right_overlap, :validate_truck_middle_overlap, :validate_truck_outer_overlap
 
   			def starting_greater_than_ending
@@ -80,7 +80,6 @@ module TripOverlapValidations
 				end
 			end
   		end
+  		
 	end
-
-	
 end

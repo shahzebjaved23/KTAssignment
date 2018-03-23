@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 	def create
 		@user = User.find_by(email: session_params[:email])
 		if @user.present? && @user.valid_password?(session_params[:password])
+			@user.add_auth_token
 			render json: { user: @user }
 		else
 			render json: { message: "invalid email or password" }, status: 422

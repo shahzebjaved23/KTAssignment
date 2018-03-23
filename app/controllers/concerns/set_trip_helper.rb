@@ -19,18 +19,18 @@ module SetTripHelper
 	end
 
 	def set_trips_with_user_and_truck
-		@trips = Trip.where(user_id: params[:user_id], truck_id: params[:truck_id]).where("starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}'")
+		@trips = Trip.where(user_id: params[:user_id], truck_id: params[:truck_id]).where("(starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}') OR (starting >= '#{params[:starting]}' AND ending IS NULL)")
 	end
 
 	def set_trips_with_user
-		@trips = Trip.where(user_id: params[:user_id]).where("starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}'")
+		@trips = Trip.where(user_id: params[:user_id]).where("(starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}') OR (starting >= '#{params[:starting]}' AND ending IS NULL)")
 	end
 
 	def set_trips_with_trucks
-		@trips = Trip.where(truck_id: params[:truck_id]).where("starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}'")
+		@trips = Trip.where(truck_id: params[:truck_id]).where("(starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}') OR (starting >= '#{params[:starting]}' AND ending IS NULL)")
 	end
 
 	def set_general_trips
-		@trips = Trip.where("starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}'")
+		@trips = Trip.where("(starting >= '#{params[:starting]}' AND ending <= '#{params[:ending]}') OR (starting >= '#{params[:starting]}' AND ending IS NULL)")
 	end
 end
