@@ -141,6 +141,23 @@ RSpec.describe TripsController do
 	end
 
 	describe "#summary" do
+		it "throws error if user_id and truck_id both not present" do
+			user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", password: "password", company_id: company.id)
+			sign_in(user)
+			
+			truck = Truck.create(number: "232323", company_id: company.id)
+
+			trip = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now - 1.day, ending: DateTime.now + 2.days, distance: 22423, company_id: company.id)
+			trip2 = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now + 4.days, ending: DateTime.now + 7.days, distance: 224, company_id: company.id)
+			
+			get :summary, params: {
+				starting: DateTime.now - 3.days,
+				ending: DateTime.now + 3.days,
+			}
+
+			expect(response).to have_http_status(422)
+		end
+
 		it "gets the user summary when user present" do
 			user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", password: "password", company_id: company.id)
 			sign_in(user)
