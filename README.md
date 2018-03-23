@@ -1,24 +1,24 @@
-# README
+Run Rake Task To create users for testing
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- rails user_admin:create
 
-Things you may want to cover:
+This will create the users with email and password, one with admin role, and other with readonly
 
-* Ruby version
+Authenticate Requests with Authorization Header
 
-* System dependencies
+- headers: { Authorization: "user_auth_token" }
 
-* Configuration
+To get the User Auth Token, send following request
 
-* Database creation
+-URL: /login
+-METHOD: POST
+-REQUEST PARAMS: {
+	user: {
+		email: "admin@email.com",
+		password: "password"
+	}
+}
 
-* Database initialization
+To run Specs Run
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- rspec spec

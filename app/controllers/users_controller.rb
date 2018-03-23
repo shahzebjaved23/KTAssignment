@@ -13,9 +13,6 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def trips_summary
-	end
-
 	private
 
 	def user_params
