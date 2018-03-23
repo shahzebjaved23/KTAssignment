@@ -2,8 +2,8 @@ module CreateTripsHelper
 	def create_trips_transaction
 		begin
 			Trip.transaction do
-				trips_params.each do |trip_params|
-					Trip.create(trip_params)
+				trips_params[:trips].each do |trip_params|
+					trip = Trip.create!(trip_params)
 				end
 			end
 			return true
