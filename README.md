@@ -11,7 +11,9 @@ Authenticate Requests with Authorization Header
 To get the User Auth Token, send following request
 
 -URL: /login
+
 -METHOD: POST
+
 -REQUEST PARAMS: {
 	user: {
 		email: "admin@email.com",
@@ -21,4 +23,4 @@ To get the User Auth Token, send following request
 
 To run Specs Run
 
-- rspec spec
+- rspec spec -f d
