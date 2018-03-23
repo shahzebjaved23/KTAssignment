@@ -136,6 +136,7 @@ RSpec.describe TripsController do
 					}
 				]
 			}
+			expect(Trip.count).to eq(0)
 			expect(response).to have_http_status(400)
 		end
 	end
