@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
 	before_action :authenticate_with_token!
+	before_action :set_current_company
 	before_action :authenticate_admin_user, only: [:create]
 
 	def create

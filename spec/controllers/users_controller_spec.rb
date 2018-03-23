@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe UsersController do
 	it "create a new user with the user role" do
-		user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", role: "admin", password: "password")
+		company = Company.create(name: "some")
+		user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", role: "admin", password: "password", company_id: company.id)
 		sign_in(user)
 
 		post :create, params: {
@@ -19,7 +20,8 @@ RSpec.describe UsersController do
 	end
 
 	it "creates the new user with the admin role" do
-		user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", role: "admin", password: "password")
+		company = Company.create(name: "some")
+		user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", role: "admin", password: "password", company_id: company.id)
 		sign_in(user)
 
 		post :create, params: {
@@ -37,7 +39,8 @@ RSpec.describe UsersController do
 	end
 
 	it "only lets the admin users to create new users" do
-		user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", password: "password")
+		company = Company.create(name: "some")
+		user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", password: "password", company_id: company.id)
 		sign_in(user)
 
 		post :create, params: {

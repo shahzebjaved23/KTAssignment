@@ -46,6 +46,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'acts_as_tenant'
 end
 
 group :development do

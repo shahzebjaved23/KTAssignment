@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe SessionsController do 
 
 	it "creates a session for the user" do
-		user = User.create(first_name: "firstname", last_name: "lastName", email: "some@email.com", password: "password")
+		company = Company.create(name: "some")
+		user = User.create(first_name: "firstname", last_name: "lastName", email: "some@email.com", password: "password", company_id: company.id)
 		post :create, params: {
 			user: {
 				email: "some@email.com",
@@ -14,7 +15,8 @@ RSpec.describe SessionsController do
 	end
 
 	it "returns an error for wrong email" do
-		user = User.create(first_name: "firstname", last_name: "lastName", email: "some@email.com", password: "password")
+		company = Company.create(name: "some")
+		user = User.create(first_name: "firstname", last_name: "lastName", email: "some@email.com", password: "password", company_id: company.id)
 		post :create, params: {
 			user: {
 				email: "some@email.co",
@@ -25,7 +27,8 @@ RSpec.describe SessionsController do
 	end
 
 	it "returns and error for wrong password" do
-		user = User.create(first_name: "firstname", last_name: "lastName", email: "some@email.com", password: "password")
+		company = Company.create(name: "some")
+		user = User.create(first_name: "firstname", last_name: "lastName", email: "some@email.com", password: "password", company_id: company.id)
 		post :create, params: {
 			user: {
 				email: "some@email.com",

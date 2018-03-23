@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
 
 	before_action :authenticate_with_token!
+	before_action :set_current_company
 	before_action :authenticate_admin_user, only: [:create]
 	before_action :set_all_trips, only: [:index]
 	before_action :trips_summary, only: [:summary]
