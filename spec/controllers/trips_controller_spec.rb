@@ -139,5 +139,47 @@ RSpec.describe TripsController do
 		end
 	end
 
-	
+	describe "#summary" do
+		it "gets the user summary when user present" do
+			user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", password: "password")
+			sign_in(user)
+			
+			truck = Truck.create(number: "232323")
+
+			trip = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now - 1.day, ending: DateTime.now + 2.days, distance: 22423)
+			trip2 = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now + 4.days, ending: DateTime.now + 7.days, distance: 224)
+			
+			get :summary, params: {
+				starting: DateTime.now - 3.days,
+				ending: DateTime.now + 3.days,
+				user_id: user.id
+			}
+
+			res = JSON.parse(response.body)
+			expect(res["summary"]["total_trips"]).to eq(1)
+			expect(res["summary"]["total_distance"]).to eq(22423)
+		end
+
+		it "gets the truck summary when truck present" do
+			user = User.create(first_name: "firstname", last_name: "lastname", email: "some@email.com", password: "password")
+			sign_in(user)
+			
+			truck = Truck.create(number: "232323")
+
+			trip = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now - 1.day, ending: DateTime.now + 2.days, distance: 22423)
+			trip2 = Trip.create(user_id: user.id, truck_id: truck.id, starting: DateTime.now + 4.days, ending: DateTime.now + 7.days, distance: 224)
+			
+			get :summary, params: {
+				starting: DateTime.now - 3.days,
+				ending: DateTime.now + 3.days,
+				truck_id: truck.id
+			}
+
+			res = JSON.parse(response.body)
+			res = JSON.parse(response.body)
+			expect(res["summary"]["total_trips"]).to eq(1)
+			expect(res["summary"]["total_distance"]).to eq(22423)
+		end
+		
+	end
 end
